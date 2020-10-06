@@ -47,7 +47,7 @@ class simplex:
                 str_=str_+"b"+str(i)
 
             for j in range(n):
-                str_=str_+" "+str(mat[i][j])
+                str_=str_+" "+str('{:.2f}'.format(mat[i][j]))
 
             str_=str_+"\n"
 
@@ -158,8 +158,29 @@ class simplex:
      
 
     def simplex(self,m,n,mat,mode):
+        s=""
+        for i in range(len(mat)):
+            for j in range(len(mat[i])):
+                if j<len(mat[i])-1 or i==0:
+                    if mat[i][j]>0 and j>0:
+                        s=s+"+"+str('{:.2f}'.format(mat[i][j]))+"x_"+str(j+1)
+                    else:
+                        s=s+str('{:.2f}'.format(mat[i][j]))+"x_"+str(j+1)
+                        
+                if j==len(mat[i])-1 and i>0:
+                    a="=>" if mode==1 else "<="
+                    s=s+a+str('{:.2f}'.format(mat[i][j]))
+
+            if i==0:
+                a="min" if mode==1 else "max"
+                s=s+"->"+a+"\n"
+
+            s=s+"\n"
+        
+        self.result_string=self.result_string+s
+        
+        self.result_string=self.result_string+self.print_tableau(m,n,mat,"Initial",mode)
         if mode==1:
-            self.result_string=self.result_string+self.print_tableau(m,n,mat,"Initial",mode)
             mat=self.convert_to_min(mat)
             self.result_string=self.result_string+self.print_tableau(m,n,mat,"After convertion minimization problem to maximization problem",mode)
             a=m
@@ -270,12 +291,12 @@ def main_simplex(str1):
     
     
 str1="max 0.5 3 1 4,1 1 1 1 40,-2 -1 1 1 10,0 1 0 -1 10"
-str1="min 0.12 0.15,60 60 300,12 6 36,10 30 90"
-str1="min 3 2, 2 1 6,1 1 4"
+#str1="min 0.12 0.15,60 60 300,12 6 36,10 30 90"
+#str1="min 3 2, 2 1 6,1 1 4"
 str1="min 2 10 8, 1 1 1 6, 0 1 2 8, -1 2 2 4"
-str1="max 1 2, 1 -3 1,-1 2 4" ##error_test
-str1="max 1 3, -1 1 20,-2 1 50" ##error_test
-str1="max 2 7 6 4,1 1 0.83 0.5 65,1.2 1 1 1.2 96,0.5 0.7 1.2 0.4 80"
-str1="max 2.5 1,3 5 15,5 2 10"
+#str1="max 1 2, 1 -3 1,-1 2 4" ##error_test
+#str1="max 1 3, -1 1 20,-2 1 50" ##error_test
+#str1="max 2 7 6 4,1 1 0.83 0.5 65,1.2 1 1 1.2 96,0.5 0.7 1.2 0.4 80"
+#str1="max 2.5 1,3 5 15,5 2 10"
 main_simplex(str1)
-    
+
