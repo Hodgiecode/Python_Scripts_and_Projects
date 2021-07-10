@@ -213,7 +213,7 @@ def get_general(a_m,a_r,a_b,a_rs,a_l,profile,grant,contract):
                 
 
 def main():
-    url='https://msu.dvaoblaka.ru/api/tags/%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/articles?page=24'
+    url='https://msu.dvaoblaka.ru/api/tags/%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/articles?page=1'
     r = requests.get(url).json()
     title_lst = []
     for serial,article in enumerate(r):
