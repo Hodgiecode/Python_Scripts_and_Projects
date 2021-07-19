@@ -48,7 +48,7 @@ def get_data(predmet, label, grant, contract):
     
     for x in flist:
         if "PDF" or "pdf" in x:
-            if predmet in x and not "МАГИСТР" in x:
+            if (predmet in x or predmet.lower() in x) and not "МАГИСТР" in x:
                 file = x
                 tmp_name = label+"_res"
                 array = []
