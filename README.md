@@ -1,4 +1,10 @@
-# Simple_Python_scripts
+# Python_scripts_and_projects
+
+##### numpy.mean #####
+
+Реализация numpy.mean
+
+https://stackoverflow.com/questions/66312845/how-to-take-the-mean-along-an-axis-of-a-list-in-python-without-numpy
 
 ##### abitura #####
 
